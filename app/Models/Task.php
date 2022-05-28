@@ -15,11 +15,11 @@ class Task extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->hasOne(User::class);
     }
 
     public function teams()
     {
-        return $this->belongsToMany(Team::class);
+        return $this->hasOne(Team::class);
     }
 }
