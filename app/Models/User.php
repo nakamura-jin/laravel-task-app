@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Task;
+use App\Models\Team;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -15,13 +17,23 @@ class User extends Authenticatable implements JWTSubject
 
     protected $fillable = [
         'name',
-        'email',
+        'worker_number',
         'password',
     ];
 
     protected $hidden = [
         'password',
     ];
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class);
+    }
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class);
+    }
 
     public function getJWTIdentifier()
     {
