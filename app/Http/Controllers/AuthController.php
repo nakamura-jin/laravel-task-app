@@ -13,7 +13,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        $credentials = request(['email', 'password']);
+        $credentials = request(['worker_number', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -45,8 +45,9 @@ class AuthController extends Controller
         $payload = auth()->payload();
         return response()->json([
             'token' => $token,
-            'token_type' => 'bearer',
-            'token_period' => $payload['exp']
+            // 'token_type' => 'bearer',
+            'token_period' => $payload['exp'],
+            'name' => auth()->user()->name
         ]);
     }
 }
