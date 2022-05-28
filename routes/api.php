@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TaskController;
 
 
 Route::group(['middleware' => 'api', 'prefix' => 'v1'], function() {
@@ -17,4 +18,10 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function() {
     Route::get('team/{id}', [TeamController::class, 'show']);
     Route::put('team/{id}', [TeamController::class, 'edit']);
     Route::delete('team/{id}', [TeamController::class, 'delete']);
+
+    Route::get('task', [TaskController::class, 'index']);
+    Route::post('task', [TaskController::class, 'create']);
+    Route::get('task/{id}', [TaskController::class, 'show']);
+    Route::put('task/{id}', [TaskController::class, 'edit']);
+    Route::delete('task/{id}', [TaskController::class, 'delete']);
 });
