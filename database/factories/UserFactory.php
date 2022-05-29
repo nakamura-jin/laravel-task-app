@@ -12,11 +12,14 @@ class UserFactory extends Factory
      *
      * @return array
      */
+
+    private static int $worker_id = 10001;
+
     public function definition()
     {
         return [
             'name' => $this->faker->name(),
-            'worker_number' => $this->faker->numberBetween(10001, 10100),
+            'worker_number' => self::$worker_id++,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }
