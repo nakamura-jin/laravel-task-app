@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 
 
 Route::group(['middleware' => 'api', 'prefix' => 'v1'], function() {
@@ -12,6 +13,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function() {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
+
+    Route::get('users', [UserController::class, 'index']);
 
     Route::get('team', [TeamController::class, 'index']);
     Route::post('team', [TeamController::class, 'create']);

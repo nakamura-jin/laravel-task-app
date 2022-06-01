@@ -25,7 +25,8 @@ class TeamRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'member' => 'required'
         ];
     }
 }
