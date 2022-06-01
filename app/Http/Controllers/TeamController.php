@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\TeamRequest;
 use App\Models\Team;
+use App\Models\User;
 
 class TeamController extends Controller
 {
     public function index()
     {
         $teams = Team::with('users')->get();
+        foreach ($teams as $team) {
+            $user = User::where('id', $team->user_id)->get();
+            $team->user_name = $user[0]->name;
+        }
 
         return response()->json(['teams' => $teams], 200);
     }
@@ -38,7 +43,7 @@ class TeamController extends Controller
 
     public function show(Request $request)
     {
-        $team = Team::find($request->id);
+        $team = Team::with('users')->find($request->id);
 
         if(!$team) {
             return response()->json(['message' => 'Team not found'], 404);
