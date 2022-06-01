@@ -10,7 +10,7 @@ class TeamController extends Controller
 {
     public function index()
     {
-        $teams = Team::all();
+        $teams = Team::with('users')->get();
 
         return response()->json(['teams' => $teams], 200);
     }
@@ -23,6 +23,11 @@ class TeamController extends Controller
             'name' => $input['name'],
             'user_id' => $input['user_id'],
         ]);
+
+        $team_id = Team::find($team->id);
+        foreach($input['member'] as $member) {
+            $team_id->users()->attach($member);
+        }
 
         if(!$team) {
             return response()->json(['message' => 'error'], 404);
