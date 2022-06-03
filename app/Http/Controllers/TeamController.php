@@ -18,6 +18,10 @@ class TeamController extends Controller
             $team->user_name = $user[0]->name;
             $tasks = Task::where('team_id', $team->id)->get();
             $team->tasks = $tasks;
+            foreach ($tasks as $task) {
+                $task_user = User::where('id', $task->user_id)->first();
+                $task->user_name = $task_user->name;
+            }
         }
 
         return response()->json(['teams' => $teams], 200);
@@ -49,6 +53,10 @@ class TeamController extends Controller
         $team = Team::with('users')->find($request->id);
         $tasks = Task::where('team_id', $request->id)->get();
         $team->tasks = $tasks;
+        foreach ($tasks as $task) {
+            $user = User::find($task->user_id);
+            $task->user_name = $user->name;
+        }
 
         if(!$team) {
             return response()->json(['message' => 'Team not found'], 404);
