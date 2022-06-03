@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\TeamRequest;
 use App\Models\Team;
 use App\Models\User;
+use App\Models\Task;
 
 class TeamController extends Controller
 {
@@ -15,6 +16,8 @@ class TeamController extends Controller
         foreach ($teams as $team) {
             $user = User::where('id', $team->user_id)->get();
             $team->user_name = $user[0]->name;
+            $tasks = Task::where('team_id', $team->id)->get();
+            $team->tasks = $tasks;
         }
 
         return response()->json(['teams' => $teams], 200);
@@ -44,6 +47,8 @@ class TeamController extends Controller
     public function show(Request $request)
     {
         $team = Team::with('users')->find($request->id);
+        $tasks = Task::where('team_id', $request->id)->get();
+        $team->tasks = $tasks;
 
         if(!$team) {
             return response()->json(['message' => 'Team not found'], 404);

@@ -24,6 +24,7 @@ class TaskController extends Controller
             'contents' => $input['contents'],
             'user_id' => $input['user_id'],
             'team_id' => $input['team_id'],
+            'item_id' => $input['item_id'],
         ]);
 
         if(!$task) {
@@ -51,9 +52,10 @@ class TaskController extends Controller
             'contents' => $request->contents,
             'user_id' => $request->user_id,
             'team_id' => $request->team_id,
+            'item_id' => $request->item_id
         ];
 
-        $task = Tesk::where('task_id', $request->id)->update($data);
+        $task = Task::where('id', $request->id)->update($data);
 
         if(!$task) {
             return response()->json(['task' => 'Could not update'], 404);
@@ -64,7 +66,7 @@ class TaskController extends Controller
 
     public function delete(Request $request)
     {
-        $task = Tesk::where('task_id', $request->id)->delete();
+        $task = Task::where('task_id', $request->id)->delete();
 
         if(!$task) {
             return response()->json(['task' => 'Could not delete'], 404);
