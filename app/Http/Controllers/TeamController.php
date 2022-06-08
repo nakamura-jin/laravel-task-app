@@ -72,6 +72,10 @@ class TeamController extends Controller
             'user_id' => $request->user_id,
         ];
 
+        $team = Team::find($request->team_id);
+        $team->users()->sync($request->member);
+
+
         $update = Team::where('id', $request->id)->update($data);
 
         if(!$update) {
