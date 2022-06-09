@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Task;
 use App\Models\TaskNumber;
 
