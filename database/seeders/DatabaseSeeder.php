@@ -13,8 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(ItemSeeder::class);
         \App\Models\User::factory(10)->create();
         \App\Models\Team::factory(10)->create();
         \App\Models\Task::factory(30)->create();
+        $this->call(TaskNumberSeeder::class);
     }
 }

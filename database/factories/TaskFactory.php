@@ -17,7 +17,9 @@ class TaskFactory extends Factory
             'title' => $this->faker->word(),
             'contents' => $this->faker->realText(),
             'user_id' => $this->faker->numberBetween(1, 10),
-            'team_id' => $this->faker->numberBetween(1, 5)
+            'team_id' => $this->faker->numberBetween(1, 5),
+            'item_id' => $this->faker->numberBetween(1, 4),
+            'task_count' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

@@ -28,6 +28,7 @@ class TaskRequest extends FormRequest
             'contents' => 'required',
             'user_id' => 'required',
             'team_id' => 'required',
+            'item_id' => 'required',
         ];
     }
 }
