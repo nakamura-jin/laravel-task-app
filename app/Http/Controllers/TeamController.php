@@ -52,13 +52,11 @@ class TeamController extends Controller
     public function show(Request $request)
     {
         $team = Team::with('users')->find($request->id);
-        // $task_count = TaskNumber::where('team_id', $request['id'])->orderBy('task_count', 'desc')->first();
         $tasks = Task::where('team_id', $request->id)->get();
         $team->tasks = $tasks;
         foreach ($tasks as $task) {
             $user = User::find($task->user_id);
             $task->user_name = $user->name;
-            // dd($task);
         }
 
         if(!$team) {
