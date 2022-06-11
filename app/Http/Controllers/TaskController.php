@@ -92,7 +92,7 @@ class TaskController extends Controller
 
     public function delete(Request $request)
     {
-        $task = Task::where('task_id', $request->id)->delete();
+        $task = Task::where('id', $request->id)->delete();
 
         if(!$task) {
             return response()->json(['task' => 'Could not delete'], 404);
