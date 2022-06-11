@@ -59,11 +59,21 @@ class TeamController extends Controller
             $task->user_name = $user->name;
         }
 
-        if(!$team) {
+        $task_count = TaskNumber::where('team_id', $request->id)->orderBy('task_count', 'desc')->get();
+        $answer = $task_count == null ? null : $task_count;
+
+        if(isset($answer[0])) {
+            $team->task_count = $task_count[0]->task_count;
+        }
+
+        if (!$team) {
             return response()->json(['message' => 'Team not found'], 404);
         }
 
         return response()->json(['team' => $team], 200);
+
+
+
     }
 
     public function edit(Request $request)
