@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\Task;
 use App\Models\Team;
+use App\Models\Role;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -19,6 +20,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'worker_number',
         'password',
+        'role_id'
     ];
 
     protected $hidden = [
@@ -33,6 +35,11 @@ class User extends Authenticatable implements JWTSubject
     public function tasks()
     {
         return $this->belongsToMany(Task::class);
+    }
+
+    public function roles()
+    {
+        return $this->hasOne(Role::class);
     }
 
     public function getJWTIdentifier()

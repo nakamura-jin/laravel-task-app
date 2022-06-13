@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
@@ -21,6 +20,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'worker_number' => self::$worker_id++,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'role_id' => $this->faker->numberBetween(1, 2)
         ];
     }
 
