@@ -15,6 +15,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function() {
     Route::post('me', [AuthController::class, 'me']);
 
     Route::get('users', [UserController::class, 'index']);
+    Route::post('register', [UserController::class, 'register']);
 
     Route::get('team', [TeamController::class, 'index']);
     Route::post('team', [TeamController::class, 'create']);

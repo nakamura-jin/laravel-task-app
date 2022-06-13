@@ -47,7 +47,8 @@ class AuthController extends Controller
             'token' => $token,
             // 'token_type' => 'bearer',
             'token_period' => $payload['exp'],
-            'user' => auth()->user()->id
+            'user' => auth()->user()->id,
+            'role' => auth()->user()->role_id
         ]);
     }
 }
