@@ -23,6 +23,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function() {
     Route::put('team/{id}', [TeamController::class, 'edit']);
     Route::delete('team/{id}', [TeamController::class, 'delete']);
 
+
+    Route::get('test/{id}', [TeamController::class, 'test']);
+
     Route::get('task', [TaskController::class, 'index']);
     Route::post('task', [TaskController::class, 'create']);
     Route::get('task/{id}', [TaskController::class, 'show']);

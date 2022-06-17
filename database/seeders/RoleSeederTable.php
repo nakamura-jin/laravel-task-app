@@ -15,10 +15,12 @@ class RoleSeederTable extends Seeder
     public function run()
     {
         Role::create([
+            'id' => 1,
             'name' => '権限あり'
         ]);
 
         Role::create([
+            'id' => 2,
             'name' => '権限なし'
         ]);
     }

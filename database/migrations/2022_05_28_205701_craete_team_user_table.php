@@ -21,6 +21,8 @@ class CraeteTeamUserTable extends Migration
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
+
+            $table->unique(['user_id', 'team_id']);
         });
     }
 
