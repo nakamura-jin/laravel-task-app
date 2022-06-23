@@ -17,6 +17,8 @@ class TeamSeederTable extends Seeder
      */
     public function run()
     {
+        Team::factory(10)->create();
+
         for($i = 1; $i <= 10; $i++) {
             $team_id = $i;
             $user_id = User::select('id')->orderByRaw("RAND()")->first()->id;
