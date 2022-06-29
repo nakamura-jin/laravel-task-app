@@ -33,9 +33,36 @@ class UserController extends Controller
         ]);
 
         if(!$user) {
-            return reponse()->json(['message' => "Can't create user"], 404);
+            return response()->json(['message' => "Could not create"], 404);
         }
 
         return response()->json(['user' => $user], 200);
+    }
+
+    public function edit(Request $request)
+    {
+        $data = [
+            'name' => $request->name,
+            'worker_number' => $request->worker_number,
+            'role_id' => $request->role_id
+        ];
+
+        $update = User::where('id', $request->id)->update($data);
+
+        if(!$update) {
+            return reponse()->json(['message' => "Could not update"], 404);
+        }
+
+        return response()->json(['message' => 'udpate successfully'], 200);
+    }
+
+    public function destory(Request $request)
+    {
+        $user = User::where('id', $request->id)->delete();
+        if(!$user) {
+            return reponse()->json(['message' => "Could not deleted", 404]);
+        }
+
+        return response()->json(['message' => 'Deleted Successfully'], 200);
     }
 }
