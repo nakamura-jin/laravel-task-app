@@ -37,6 +37,9 @@ class ExperienceSeederTable extends Seeder
             'user_id' => 21,
         ]);
 
+        $test_user = User::where('id', 21)->get();
+        $team->users()->attach($test_user);
+
         for ($i = 1; $i <= 3; $i++) {
             $user = User::where('id', $i)->get();
             $team->users()->attach($user);
