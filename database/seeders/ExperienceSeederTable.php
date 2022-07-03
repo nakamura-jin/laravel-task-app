@@ -26,7 +26,7 @@ class ExperienceSeederTable extends Seeder
         // 体験用ユーザー
         User::create([
             'name' => '体験用ユーザー',
-            'worker_number' => '00000',
+            'worker_number' => '99999',
             'password' => Hash::make('testtest'),
             'role_id' => 2
         ]);
